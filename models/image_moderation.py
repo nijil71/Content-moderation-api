@@ -1,11 +1,11 @@
 import torch
-from transformers import AutoFeatureExtractor, AutoModelForImageClassification
+from transformers import ViTImageProcessor, AutoModelForImageClassification
 from PIL import Image
 
 class ImageModerator:
     def __init__(self):
         # Initialize NSFW image detection model
-        self.feature_extractor = AutoFeatureExtractor.from_pretrained("Falconsai/nsfw_image_detection")
+        self.feature_extractor = ViTImageProcessor.from_pretrained("Falconsai/nsfw_image_detection")
         self.model = AutoModelForImageClassification.from_pretrained("Falconsai/nsfw_image_detection")
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model.to(self.device)

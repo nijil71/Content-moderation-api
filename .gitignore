@@ -2,3 +2,4 @@ env
 logs
 temp_uploads
 __pycache__
+.env

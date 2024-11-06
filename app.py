@@ -2,7 +2,7 @@
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import logging
 from logging.handlers import RotatingFileHandler
 from functools import wraps
@@ -14,7 +14,7 @@ from utils.rate_limiter import RateLimiter
 from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
 
-# Initialize Flask app
+# Initializes Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -76,15 +76,15 @@ def get_token():
     # Generate token
     token = jwt.encode({
         'user': username,
-        'exp': datetime.utcnow() + timedelta(hours=1)
+        'exp': datetime.now(timezone.utc) + timedelta(hours=1)
     }, app.config['SECRET_KEY'])
     
     return jsonify({'token': token})
 
-@app.route('/api/auth/test', methods=['GET'])
-@token_required
-def test_auth():
-    return jsonify({'message': 'Authentication successful!'})
+# @app.route('/api/auth/test', methods=['GET'])
+# @token_required
+# def test_auth():
+#     return jsonify({'message': 'Authentication successful!'})
 @app.route('/api/moderate/text', methods=['POST'])
 @token_required
 @rate_limiter.limit

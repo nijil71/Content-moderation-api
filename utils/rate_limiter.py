@@ -32,6 +32,7 @@ class RateLimiter:
             return f(*args, **kwargs)
         return decorated
 
-# config.py
 
+    # def reset(self):
+    #     self.requests = defaultdict(list)       
 
