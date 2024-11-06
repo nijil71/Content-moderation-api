@@ -1,0 +1,8 @@
+Flask
+transformers
+torch
+Pillow
+opencv-python
+numpy
+PyJWT
+python-dotenv
