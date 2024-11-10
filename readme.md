@@ -27,7 +27,7 @@ A scalable Flask-based API that leverages advanced AI models to detect and filte
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/content-moderation-api.git
+git clone https://github.com/nijil71/Content-moderation-api.git
 cd content-moderation-api
 ```
 
